@@ -174,10 +174,28 @@ register('acid', (pat) => {
     .lpq(12)
 })
 
-
-
-
 $: s("white").clip(0).gain(0)
 
+//Additions by KingMob4313
 
+
+//register('wavefold', (x, pat) => pat
+//  .n(x * 2 + 3)
+//  .fm(x * 4 + 3)
+//)
+
+//a wavefolder for use with a slider, sine or other -1 0 1 variable
+register('wavefold', (folderValue, addition, x, pat) => {
+  return pat.n(x * folderValue + addition)
+     .fm(x * (folderValue + 1) + Math.round(addition*1.331))
+})
+
+//.whirlitzer(slider(0.5)) will get you want you want
+//register('whirlitzer', (x, pat) => pat
+//  
+
+//a spinning speaker emulator for use with a slider, sine or other -1 0 1 variable
+register('whirlitzer', (whirlFactor, adddition, x, pat) => {
+  return pat.phaser((x * whirlFactor) + addition)
+})
 
